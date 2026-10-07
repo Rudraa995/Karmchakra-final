@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidya Karma — KarmChakra</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top kc-navbar kc-navbar--scrolled">
+        <div class="container kc-container">
+            <a class="navbar-brand kc-brand" href="index.html">
+                <svg class="brand-symbol" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1"/>
+          <circle cx="20" cy="20" r="12.5" stroke="currentColor" stroke-width="1"/>
+          <path d="M20 4v6M20 30v6M4 20h6M30 20h6M8.5 8.5l4.2 4.2M27.3 27.3l4.2 4.2M31.5 8.5l-4.2 4.2M12.7 27.3l-4.2 4.2" stroke="currentColor" stroke-width="1"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor"/>
+        </svg>
+                <span>KarmChakra</span>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center kc-nav-links">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html#karmas">Karmas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="karmguru.html">KarmGuru</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">Profile</a>
+                    </li>
+
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn kc-join-btn" href="login.html">Join</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile sidebar toggle -->
+    <button class="mobile-menu-button" id="mobileMenu">☰</button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Vidya</div>
+            <div class="sidebar-subtitle">Karma Dashboard</div>
+        </div>
+
+        <div class="sidebar-navigation">
+            <button class="sidebar-item active" data-section="career-counselling">
+        <span class="sidebar-icon">🎯</span>
+        <span>Career Counselling</span>
+      </button>
+
+            <button class="sidebar-item" data-section="digital-literacy">
+        <span class="sidebar-icon">💻</span>
+        <span>Digital Literacy</span>
+      </button>
+
+            <button class="sidebar-item" data-section="financial-literacy">
+        <span class="sidebar-icon">💰</span>
+        <span>Financial Literacy</span>
+      </button>
+
+            <button class="sidebar-item" data-section="teach-children">
+        <span class="sidebar-icon">📚</span>
+        <span>Teaching Underprivileged Children</span>
+      </button>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div class="karma-score">
+                <div class="karma-score-title">Karma Score</div>
+                <div class="karma-score-number">1,240<span>pts</span></div>
+                <div class="karma-progress">
+                    <div class="karma-progress-fill"></div>
+                </div>
+                <div class="karma-level">Level 7 · Vidya Mentor</div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main content -->
+    <main class="main-content">
+
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <a href="karma.html?domain=vidya" class="back-link">← Back to Vidya Karma</a>
+
+            <div class="heading-content">
+                <span class="heading-kicker">VIDYA KARMA</span>
+                <h1 id="pageTitle">Career Counselling</h1>
+                <p id="pageDescription">Organise or support career guidance sessions for students.</p>
+            </div>
+        </div>
+
+        <!-- ================= CAREER COUNSELLING ================= -->
+        <div class="dashboard-section active" id="career-counselling">
+            <div class="seva-form-card">
+                <form class="vidyaActivityForm" data-activity="career-counselling">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos from the counselling session.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What was this counselling session about?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Career guidance session for 12th grade students" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> Number of Students Guided</label>
+                        <p class="form-help">How many students did you guide?</p>
+                        <input type="number" class="tree-input" min="1" placeholder="e.g. 15" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>5.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the session.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I organised a career counselling session for 12th grade students, discussing various career paths and higher education options." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= DIGITAL LITERACY ================= -->
+        <div class="dashboard-section" id="digital-literacy">
+            <div class="seva-form-card">
+                <form class="vidyaActivityForm" data-activity="digital-literacy">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos from the digital literacy session.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What was this digital literacy session about?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Cyber safety workshop, Basic smartphone usage training" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> Topic Covered</label>
+                        <p class="form-help">What specific topic did you teach?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Cyber fraud awareness, Safe internet usage, Online banking safety" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>5.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the session.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I conducted a session teaching elderly residents how to identify and avoid online scams." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= FINANCIAL LITERACY ================= -->
+        <div class="dashboard-section" id="financial-literacy">
+            <div class="seva-form-card">
+                <form class="vidyaActivityForm" data-activity="financial-literacy">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos from the financial literacy session.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What was this financial literacy session about?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Savings and budgeting workshop for daily wage workers" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> Topic Covered</label>
+                        <p class="form-help">What specific topic did you teach?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Budgeting, Savings accounts, Investment basics" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>5.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the session.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I taught a group of daily wage workers about basic budgeting and the importance of savings accounts." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= TEACHING UNDERPRIVILEGED CHILDREN ================= -->
+        <div class="dashboard-section" id="teach-children">
+            <div class="seva-form-card">
+                <form class="vidyaActivityForm" data-activity="teach-children">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos from the teaching session.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What did you teach and to whom?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Taught basic maths to underprivileged children" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> Subject Taught</label>
+                        <p class="form-help">Which subject did you focus on?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Mathematics, English, Science" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> Number of Students Taught</label>
+                        <p class="form-help">How many students were involved?</p>
+                        <input type="number" class="tree-input" min="1" placeholder="e.g. 12" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>5.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>6.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the session.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I taught basic mathematics to underprivileged children at a community centre near my area." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- ================= SUCCESS POPUP ================= -->
+        <div class="success-overlay" id="successOverlay">
+            <div class="success-card">
+                <div class="success-icon">✓</div>
+                <span class="section-kicker">SUBMISSION RECEIVED</span>
+                <h2>Karma Submitted!</h2>
+                <p>Your Vidya contribution has been submitted for AI verification.</p>
+                <div class="verification-points">
+                    <span>📚</span>
+                    <strong id="successPoints">+80 Mudrā</strong>
+                    <small>Pending verification</small>
+                </div>
+                <button type="button" class="dashboard-btn" id="closeSuccess">Continue</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vidya.js"></script>
+    <script src="multi-upload.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | KarmaChakra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <main class="auth">
+
+        <!-- Left: brand panel -->
+        <section class="brand">
+            <a href="index.html" class="logo">KarmaChakra</a>
+            <img src="assets/login_karm.png" class="mandala" alt="KarmaChakra mandala">
+            <div class="brand-text">
+                <h1>Every good action creates positive change.</h1>
+                <p>Log in to keep building your Karma Mudrā. Every verified deed adds to it.</p>
+            </div>
+        </section>
+
+        <!-- Right: form card -->
+        <section class="panel">
+            <div class="card">
+
+                <div class="tabs" role="tablist">
+                    <button class="tab active" id="tabLogin" role="tab" aria-selected="true">Login</button>
+                    <button class="tab" id="tabSignup" role="tab" aria-selected="false">Sign up</button>
+                </div>
+
+                <p class="alert" id="formAlert" role="alert" hidden></p>
+
+                <!-- LOGIN FORM -->
+                <form id="loginForm" novalidate>
+                    <h2>Welcome back</h2>
+                    <p class="sub">Enter your details to continue.</p>
+
+                    <div class="field">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" autocomplete="email" placeholder="you@example.com">
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="field">
+                        <label for="loginPassword">Password</label>
+                        <div class="pass">
+                            <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Enter your password">
+                            <button type="button" class="eye" data-target="loginPassword" aria-label="Show password">Show</button>
+                        </div>
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="row">
+                        <label class="check"><input type="checkbox" id="remember"> Remember me</label>
+                        <a href="#" id="forgot">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn">Login</button>
+                    <p class="switch">New to KarmaChakra? <a href="#" id="goSignup">Create an account</a></p>
+                </form>
+
+                <!-- SIGNUP FORM -->
+                <form id="signupForm" novalidate hidden>
+                    <h2>Create your account</h2>
+                    <p class="sub">Start recording the good you do.</p>
+
+                    <div class="field">
+                        <label for="name">Full name</label>
+                        <input type="text" id="name" autocomplete="name" placeholder="Your full name">
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="field">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter username" required>
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="field">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" autocomplete="email" placeholder="you@example.com">
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">Mobile number</label>
+                        <input type="tel" id="phone" autocomplete="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number">
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="field">
+                        <label for="signupPassword">Password</label>
+                        <div class="pass">
+                            <input type="password" id="signupPassword" autocomplete="new-password" placeholder="Create a strong password">
+                            <button type="button" class="eye" data-target="signupPassword" aria-label="Show password">Show</button>
+                        </div>
+                        <div class="meter"><i id="meterBar"></i></div>
+                        <p class="strength" id="strengthText">Password strength</p>
+                        <ul class="rules" id="rules">
+                            <li data-rule="len">At least 8 characters</li>
+                            <li data-rule="upper">One uppercase letter</li>
+                            <li data-rule="lower">One lowercase letter</li>
+                            <li data-rule="num">One number</li>
+                            <li data-rule="sym">One special character (!@#$%)</li>
+                        </ul>
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="field">
+                        <label for="confirm">Confirm password</label>
+                        <div class="pass">
+                            <input type="password" id="confirm" autocomplete="new-password" placeholder="Re-enter your password">
+                            <button type="button" class="eye" data-target="confirm" aria-label="Show password">Show</button>
+                        </div>
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="field">
+                        <label class="check"><input type="checkbox" id="terms"> I agree to the Terms and Privacy Policy</label>
+                        <small class="error"></small>
+                    </div>
+
+                    <button type="submit" class="btn">Create account</button>
+                    <p class="switch">Already have an account? <a href="#" id="goLogin">Login</a></p>
+                </form>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,400 @@
+:root {
+    --bg: #1a0d06;
+    --bg-2: #24130a;
+    --amber: #ffa91f;
+    --amber-2: #ffc94d;
+    --cream: #f3e3c3;
+    --muted: #b9a58a;
+    --line: rgba(255, 169, 31, .28);
+    --ok: #6fcf8f;
+    --bad: #ff7b6b;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--cream);
+    min-height: 100vh;
+}
+
+.auth {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    min-height: 100vh;
+}
+
+
+/* ---------- Brand panel ---------- */
+
+.brand {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 56px;
+    background: radial-gradient(circle at 50% 45%, rgba(255, 169, 31, .22), transparent 62%), var(--bg);
+    overflow: hidden;
+}
+
+.logo {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--cream);
+    text-decoration: none;
+}
+
+.chakra {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    width: 360px;
+    height: 360px;
+    transform: translate(-50%, -50%);
+}
+
+.chakra span {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+}
+
+.chakra span:nth-child(2) {
+    inset: 40px;
+    border-style: dashed;
+    animation: spin 40s linear infinite;
+}
+
+.chakra span:nth-child(3) {
+    inset: 90px;
+    border-color: var(--amber);
+    box-shadow: 0 0 70px rgba(255, 169, 31, .35) inset;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.brand-text {
+    position: relative;
+    max-width: 460px;
+}
+
+.brand-text h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 2.6rem;
+    line-height: 1.15;
+    margin-bottom: 14px;
+}
+
+.brand-text p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+
+/* ---------- Form panel ---------- */
+
+.panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    background: var(--bg-2);
+}
+
+.card {
+    width: min(440px, 100%);
+}
+
+.tabs {
+    display: flex;
+    gap: 6px;
+    padding: 5px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    margin-bottom: 28px;
+}
+
+.tab {
+    flex: 1;
+    padding: 11px;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--muted);
+    font: 500 .95rem var(--sans);
+    transition: background .2s, color .2s;
+}
+
+.tab.active {
+    background: linear-gradient(90deg, var(--amber), var(--amber-2));
+    color: #2a1500;
+}
+
+h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.sub {
+    color: var(--muted);
+    margin: 4px 0 24px;
+}
+
+.alert {
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    font-size: .9rem;
+    border: 1px solid;
+}
+
+.alert.err {
+    color: var(--bad);
+    border-color: var(--bad);
+    background: rgba(255, 123, 107, .08);
+}
+
+.alert.ok {
+    color: var(--ok);
+    border-color: var(--ok);
+    background: rgba(111, 207, 143, .08);
+}
+
+.field {
+    margin-bottom: 18px;
+}
+
+.field label {
+    display: block;
+    font-size: .88rem;
+    margin-bottom: 7px;
+}
+
+.field input[type=text],
+.field input[type=email],
+.field input[type=tel],
+.field input[type=password] {
+    width: 100%;
+    padding: 13px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: rgba(0, 0, 0, .28);
+    color: #fff;
+    font: 400 .95rem var(--sans);
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.field input::placeholder {
+    color: #7d6b55;
+}
+
+.field input:focus {
+    outline: none;
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(255, 169, 31, .2);
+}
+
+.field.invalid input {
+    border-color: var(--bad);
+}
+
+.field.valid input[type=text],
+.field.valid input[type=email],
+.field.valid input[type=tel],
+.field.valid input[type=password] {
+    border-color: var(--ok);
+}
+
+.error {
+    display: block;
+    min-height: 0;
+    margin-top: 6px;
+    color: var(--bad);
+    font-size: .8rem;
+}
+
+.pass {
+    position: relative;
+}
+
+.pass input {
+    padding-right: 64px !important;
+}
+
+.eye {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: none;
+    color: var(--amber);
+    font: 500 .8rem var(--sans);
+    cursor: pointer;
+    padding: 6px 8px;
+}
+
+
+/* password strength */
+
+.meter {
+    height: 5px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, .1);
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.meter i {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 4px;
+    transition: width .25s, background .25s;
+}
+
+.strength {
+    font-size: .8rem;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+.rules {
+    list-style: none;
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 12px;
+}
+
+.rules li {
+    font-size: .8rem;
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+}
+
+.rules li::before {
+    content: "○";
+    position: absolute;
+    left: 0;
+}
+
+.rules li.met {
+    color: var(--ok);
+}
+
+.rules li.met::before {
+    content: "✓";
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+    font-size: .88rem;
+}
+
+.check {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.check input {
+    accent-color: var(--amber);
+    width: 16px;
+    height: 16px;
+}
+
+a {
+    color: var(--amber);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--amber), var(--amber-2));
+    color: #2a1500;
+    font: 600 1rem var(--sans);
+    transition: transform .2s, box-shadow .2s, opacity .2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(255, 169, 31, .35);
+}
+
+.btn:disabled {
+    opacity: .6;
+    cursor: wait;
+    transform: none;
+    box-shadow: none;
+}
+
+.switch {
+    text-align: center;
+    margin-top: 18px;
+    font-size: .9rem;
+    color: var(--muted);
+}
+
+:focus-visible {
+    outline: 2px solid var(--amber-2);
+    outline-offset: 2px;
+}
+
+@media (max-width: 880px) {
+    .auth {
+        grid-template-columns: 1fr;
+    }
+    .brand {
+        display: none;
+    }
+    .panel {
+        min-height: 100vh;
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+}
+
+@media (max-width: 420px) {
+    .rules {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chakra span {
+        animation: none !important;
+    }
+}

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samaj Karma — KarmChakra</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top kc-navbar kc-navbar--scrolled">
+        <div class="container kc-container">
+            <a class="navbar-brand kc-brand" href="index.html">
+                <svg class="brand-symbol" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1"/>
+          <circle cx="20" cy="20" r="12.5" stroke="currentColor" stroke-width="1"/>
+          <path d="M20 4v6M20 30v6M4 20h6M30 20h6M8.5 8.5l4.2 4.2M27.3 27.3l4.2 4.2M31.5 8.5l-4.2 4.2M12.7 27.3l-4.2 4.2" stroke="currentColor" stroke-width="1"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor"/>
+        </svg>
+                <span>KarmChakra</span>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center kc-nav-links">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html#karmas">Karmas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="karmguru.html">KarmGuru</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">Profile</a>
+                    </li>
+
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn kc-join-btn" href="login.html">Join</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile sidebar toggle -->
+    <button class="mobile-menu-button" id="mobileMenu">☰</button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Samaj</div>
+            <div class="sidebar-subtitle">Karma Dashboard</div>
+        </div>
+
+        <div class="sidebar-navigation">
+            <button class="sidebar-item active" data-section="volunteering-ngo">
+        <span class="sidebar-icon">🏢</span>
+        <span>Volunteering NGO</span>
+      </button>
+
+            <button class="sidebar-item" data-section="awareness-program">
+        <span class="sidebar-icon">📢</span>
+        <span>Awareness Program</span>
+      </button>
+
+            <button class="sidebar-item" data-section="disaster-support">
+        <span class="sidebar-icon">🌪️</span>
+        <span>Natural Disaster Support</span>
+      </button>
+
+            <button class="sidebar-item" data-section="community-service">
+        <span class="sidebar-icon">🧹</span>
+        <span>Community Service</span>
+      </button>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div class="karma-score">
+                <div class="karma-score-title">Karma Score</div>
+                <div class="karma-score-number">1,240<span>pts</span></div>
+                <div class="karma-progress">
+                    <div class="karma-progress-fill"></div>
+                </div>
+                <div class="karma-level">Level 7 · Samaj Sevak</div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main content -->
+    <main class="main-content">
+
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <a href="karma.html?domain=samaj" class="back-link">← Back to Samaj Karma</a>
+
+            <div class="heading-content">
+                <span class="heading-kicker">SAMAJ KARMA</span>
+                <h1 id="pageTitle">Volunteering NGO</h1>
+                <p id="pageDescription">Volunteer with an NGO and contribute to their mission.</p>
+            </div>
+        </div>
+
+        <!-- ================= VOLUNTEERING NGO ================= -->
+        <div class="dashboard-section active" id="volunteering-ngo">
+            <div class="seva-form-card">
+                <form class="samajActivityForm" data-activity="volunteering-ngo">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos showing your NGO volunteering.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> NGO Name</label>
+                        <p class="form-help">Which NGO did you volunteer with?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Goonj, Smile Foundation" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> Task / Role</label>
+                        <p class="form-help">What did you do as a volunteer?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Packing relief kits, event coordination" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>5.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about your volunteering.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I volunteered with an NGO to pack and distribute relief kits." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= AWARENESS PROGRAM ================= -->
+        <div class="dashboard-section" id="awareness-program">
+            <div class="seva-form-card">
+                <form class="samajActivityForm" data-activity="awareness-program">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos from the awareness program.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What was the awareness program about?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Road safety awareness session, Mental health workshop" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> Your Role</label>
+                        <p class="form-help">Were you attending or organising this program?</p>
+                        <select class="tree-input" required>
+    <option value="">Select Role</option>
+    <option value="Attending">Attending</option>
+    <option value="Organising">Organising</option>
+  </select>
+                    </div>
+
+
+
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>5.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the program.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I attended a mental health awareness session organised at the community hall." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= NATURAL DISASTER SUPPORT ================= -->
+        <div class="dashboard-section" id="disaster-support">
+            <div class="seva-form-card">
+                <form class="samajActivityForm" data-activity="disaster-support">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos showing your relief work.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What kind of disaster relief did you support?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Flood relief distribution, Earthquake rescue support" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this relief work took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the relief work.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I helped distribute relief supplies after the recent floods in the area." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= COMMUNITY SERVICE ================= -->
+        <div class="dashboard-section" id="community-service">
+            <div class="seva-form-card">
+                <form class="samajActivityForm" data-activity="community-service">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos of the cleanup or service.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What kind of community service did you do?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Road cleaning drive, River cleanup" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the cleanup.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I joined a group to clean up plastic waste along the riverbank." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- ================= SUCCESS POPUP ================= -->
+        <div class="success-overlay" id="successOverlay">
+            <div class="success-card">
+                <div class="success-icon">✓</div>
+                <span class="section-kicker">SUBMISSION RECEIVED</span>
+                <h2>Karma Submitted!</h2>
+                <p>Your Samaj contribution has been submitted for AI verification.</p>
+                <div class="verification-points">
+                    <span>🏛️</span>
+                    <strong id="successPoints">+80 Mudrā</strong>
+                    <small>Pending verification</small>
+                </div>
+                <button type="button" class="dashboard-btn" id="closeSuccess">Continue</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="samaj.js"></script>
+    <script src="multi-upload.js"></script>
+</body>
+
+</html>

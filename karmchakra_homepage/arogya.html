@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arogya Karma — KarmChakra</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Top navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top kc-navbar kc-navbar--scrolled">
+        <div class="container kc-container">
+            <a class="navbar-brand kc-brand" href="index.html">
+                <svg class="brand-symbol" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1"/>
+          <circle cx="20" cy="20" r="12.5" stroke="currentColor" stroke-width="1"/>
+          <path d="M20 4v6M20 30v6M4 20h6M30 20h6M8.5 8.5l4.2 4.2M27.3 27.3l4.2 4.2M31.5 8.5l-4.2 4.2M12.7 27.3l-4.2 4.2" stroke="currentColor" stroke-width="1"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor"/>
+        </svg>
+                <span>KarmChakra</span>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center kc-nav-links">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html#karmas">Karmas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="karmguru.html">KarmGuru</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">Profile</a>
+                    </li>
+
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn kc-join-btn" href="login.html">Join</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile sidebar toggle -->
+    <button class="mobile-menu-button" id="mobileMenu">☰</button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Arogya</div>
+            <div class="sidebar-subtitle">Karma Dashboard</div>
+        </div>
+
+        <div class="sidebar-navigation">
+            <button class="sidebar-item active" data-section="health-awareness">
+        <span class="sidebar-icon">💉</span>
+        <span>Health Awareness Drive</span>
+      </button>
+
+            <button class="sidebar-item" data-section="fitness-session">
+        <span class="sidebar-icon">🏋️</span>
+        <span>Fitness Session</span>
+      </button>
+
+            <button class="sidebar-item" data-section="blood-donation">
+        <span class="sidebar-icon">🩸</span>
+        <span>Blood Donation</span>
+      </button>
+
+            <button class="sidebar-item" data-section="health-camp">
+        <span class="sidebar-icon">🏥</span>
+        <span>Health Camp Organising</span>
+      </button>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div class="karma-score">
+                <div class="karma-score-title">Karma Score</div>
+                <div class="karma-score-number">1,240<span>pts</span></div>
+                <div class="karma-progress">
+                    <div class="karma-progress-fill"></div>
+                </div>
+                <div class="karma-level">Level 7 · Arogya Rakshak</div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main content -->
+    <main class="main-content">
+
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <a href="karma.html?domain=arogya" class="back-link">← Back to Arogya Karma</a>
+
+            <div class="heading-content">
+                <span class="heading-kicker">AROGYA KARMA</span>
+                <h1 id="pageTitle">Health Awareness Drive</h1>
+                <p id="pageDescription">Spread awareness about health, vaccination and wellbeing.</p>
+            </div>
+        </div>
+
+        <!-- ================= HEALTH AWARENESS DRIVE ================= -->
+        <div class="dashboard-section active" id="health-awareness">
+            <div class="seva-form-card">
+                <form class="arogyaActivityForm" data-activity="health-awareness">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos from the awareness drive.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What was this health awareness drive about?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Vaccination awareness camp, Hygiene awareness for kids" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the drive.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I helped organise a vaccination awareness drive in my neighbourhood, informing residents about upcoming free vaccination camps." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= FITNESS SESSION ================= -->
+        <div class="dashboard-section" id="fitness-session">
+            <div class="seva-form-card">
+                <form class="arogyaActivityForm" data-activity="fitness-session">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos from the fitness session.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What was this fitness session about?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Morning yoga session at the community park" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> Your Role</label>
+                        <p class="form-help">Were you attending or organising this session?</p>
+                        <select class="tree-input" required>
+              <option value="">Select Role</option>
+              <option value="Attending">Attending</option>
+              <option value="Organising">Organising</option>
+            </select>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> Exercise Type</label>
+                        <p class="form-help">What kind of exercise was it?</p>
+                        <select class="tree-input" required>
+              <option value="">Select Exercise Type</option>
+              <option value="Yoga">Yoga</option>
+              <option value="Sports">Sports</option>
+              <option value="Gym / Strength Training">Gym / Strength Training</option>
+              <option value="Cardio / Running">Cardio / Running</option>
+              <option value="Other">Other</option>
+            </select>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>5.</span> Hours Spent</label>
+                        <p class="form-help">How many hours was the session?</p>
+                        <input type="number" class="tree-input" min="0.5" step="0.5" placeholder="e.g. 1.5" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>6.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>7.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the session.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I organised a free yoga session for senior citizens at the local park." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= BLOOD DONATION ================= -->
+        <div class="dashboard-section" id="blood-donation">
+            <div class="seva-form-card">
+                <form class="arogyaActivityForm" data-activity="blood-donation">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos as proof of your blood donation.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">Where did you donate blood?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Donated blood at the Red Cross blood camp" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> Blood Group</label>
+                        <p class="form-help">Select your blood group.</p>
+                        <select class="tree-input" required>
+              <option value="">Select Blood Group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this activity took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>5.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about your donation.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I donated blood at a camp organised near my locality to help patients in need." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= HEALTH CAMP ORGANISING ================= -->
+        <div class="dashboard-section" id="health-camp">
+            <div class="seva-form-card">
+                <form class="arogyaActivityForm" data-activity="health-camp">
+
+                    <div class="form-section">
+                        <label class="form-label"><span>1.</span> Upload Proof Photos</label>
+                        <p class="form-help">Upload clear photos from the health camp.</p>
+
+                        <label class="upload-box js-upload-box">
+              <div class="upload-icon">📷</div>
+              <div class="upload-title">Select Photos</div>
+              <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB · Up to 5 photos</div>
+              <input type="file" class="js-photo-input" accept="image/jpeg,image/png,image/jpg" multiple hidden required>
+            </label>
+
+                        <div class="seva-photo-grid js-photo-grid"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>2.</span> Activity Title</label>
+                        <p class="form-help">What was this health camp about?</p>
+                        <input type="text" class="tree-input" placeholder="e.g. Free dental checkup camp for local residents" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>3.</span> Camp Category</label>
+                        <p class="form-help">What type of health camp did you organise?</p>
+                        <select class="tree-input" required>
+              <option value="">Select Camp Category</option>
+              <option value="Dental">Dental</option>
+              <option value="Mental Health">Mental Health</option>
+              <option value="Eye">Eye</option>
+              <option value="Other">Other</option>
+            </select>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>4.</span> GPS Location</label>
+                        <p class="form-help">Tell us where this camp took place.</p>
+                        <div class="location-row">
+                            <input type="text" class="tree-input js-location-input" placeholder="Your activity location" readonly required>
+                            <button type="button" class="location-btn js-location-btn">📍 Get Location</button>
+                        </div>
+                        <div class="location-status js-location-status"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label class="form-label"><span>5.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about the camp.</p>
+                        <textarea class="tree-input tree-textarea js-description" maxlength="500" rows="5" placeholder="Example: I organised a free eye checkup camp for elderly residents in my locality with a team of volunteers." required></textarea>
+                        <div class="character-count"><span class="js-char-count">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photos, location and contribution details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+            <span class="js-submit-text">Submit for Verification</span>
+            <span class="submit-loader js-submit-loader">⟳</span>
+          </button>
+
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- ================= SUCCESS POPUP ================= -->
+        <div class="success-overlay" id="successOverlay">
+            <div class="success-card">
+                <div class="success-icon">✓</div>
+                <span class="section-kicker">SUBMISSION RECEIVED</span>
+                <h2>Karma Submitted!</h2>
+                <p>Your Arogya contribution has been submitted for AI verification.</p>
+                <div class="verification-points">
+                    <span>❤️</span>
+                    <strong id="successPoints">+80 Mudrā</strong>
+                    <small>Pending verification</small>
+                </div>
+                <button type="button" class="dashboard-btn" id="closeSuccess">Continue</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="arogya.js"></script>
+    <script src="multi-upload.js"></script>
+</body>
+
+</html>

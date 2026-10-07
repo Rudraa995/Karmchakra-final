@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#100702">
+    <title>Prakriti Karma Dashboard | KarmChakra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prakriti.css">
+</head>
+
+<body>
+
+    <header class="top-navbar">
+        <a href="index.html" class="brand" aria-label="KarmChakra home">
+            <div class="brand-logo">◉</div><span>KarmChakra</span>
+        </a>
+        <nav class="top-navigation" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="karma.html?domain=prakriti" class="active">Karmas</a>
+            <a href="karmguru.html">KarmGuru</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+        <a href="login.html" class="join-button">Join</a></header>
+
+    <button type="button" class="mobile-menu-button" id="mobileMenu" aria-label="Open menu" aria-controls="sidebar">☰</button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Prakriti</div>
+            <div class="sidebar-subtitle">Karma Dashboard</div>
+        </div>
+        <nav class="sidebar-navigation" aria-label="Dashboard sections">
+            <button type="button" class="sidebar-item active" data-section="plant-tree"><span class="sidebar-icon">🌱</span>Plant Tree</button>
+            <button type="button" class="sidebar-item" data-section="tree-history"><span class="sidebar-icon">🌳</span>Tree History</button>
+            <button type="button" class="sidebar-item" data-section="emergency"><span class="sidebar-icon">🚨</span>Emergency</button>
+            <button type="button" class="sidebar-item" data-section="rewards"><span class="sidebar-icon">🎁</span>Rewards</button>
+            <button type="button" class="sidebar-item" data-section="competitions"><span class="sidebar-icon">🎓</span>Competitions</button>
+        </nav>
+        <div class="sidebar-bottom">
+            <div class="karma-score">
+                <div class="karma-score-title">Karma Score</div>
+                <div class="karma-score-number" id="sideKarma">0 <span>pts</span></div>
+                <div class="karma-progress">
+                    <div class="karma-progress-fill" id="karmaFill"></div>
+                </div>
+                <div class="karma-level">Prakriti Guardian</div>
+            </div>
+        </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="main-content">
+        <div class="page-heading">
+            <a href="karma.html?domain=prakriti" class="back-link">← Back to Prakriti Karma</a>
+            <div class="heading-content">
+                <span class="heading-kicker">PRAKRITI KARMA</span>
+                <h1>Plant a Tree</h1>
+                <p>Upload a photo and let our AI verify your contribution.</p>
+            </div>
+        </div>
+
+        <!-- PLANT TREE -->
+        <section class="dashboard-section active" id="plant-tree">
+            <div class="plant-tree-card">
+                <form id="treeForm">
+                    <div class="form-section">
+                        <label class="form-label" for="treePhoto"><span>1.</span> Upload Tree Photo</label>
+                        <p class="form-help">Upload a clear photo showing the tree you planted.</p>
+                        <label for="treePhoto" class="upload-box">
+            <div class="upload-icon">📷</div>
+            <div class="upload-title">Select Photos</div>
+            <div class="upload-subtitle">JPG, JPEG or PNG · Max 10 MB each · Up to 10 photos</div>
+            <input type="file" id="treePhoto" accept="image/jpeg,image/png,image/jpg" hidden required>
+          </label>
+                    </div>
+
+                    <div class="form-section">
+                        <label for="treeName" class="form-label"><span>2.</span> Tree Name</label>
+                        <p class="form-help">What type of tree did you plant?</p>
+                        <input type="text" id="treeName" class="tree-input" placeholder="e.g. Neem, Banyan, Mango" maxlength="100" autocomplete="off" required>
+                    </div>
+
+                    <div class="form-section">
+                        <label for="location" class="form-label"><span>3.</span> GPS Location</label>
+                        <p class="form-help">Tell us where the tree was planted.</p>
+                        <div class="location-row">
+                            <input type="text" id="location" class="tree-input" placeholder="Your planting location" readonly required>
+                            <button type="button" id="getLocation" class="location-btn">📍 Get Location</button>
+                        </div>
+                        <input type="hidden" id="latitude"><input type="hidden" id="longitude">
+                        <div id="locationStatus" class="location-status" aria-live="polite"></div>
+                    </div>
+
+                    <div class="form-section">
+                        <label for="description" class="form-label"><span>4.</span> Describe Your Contribution</label>
+                        <p class="form-help">Tell us a little about your tree planting activity.</p>
+                        <textarea id="description" class="tree-input tree-textarea" maxlength="500" rows="5" placeholder="Describe your tree planting activity..." required></textarea>
+                        <div class="character-count"><span id="charCount">0</span> / 500</div>
+                    </div>
+
+                    <div class="verification-info">
+                        <div class="verification-icon">✨</div>
+                        <div>
+                            <h3>AI Verification</h3>
+                            <p>Our Karma AI will analyze your photo, location and details to verify your Karma.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">Submit for Verification</button>
+                    <p class="secure-note">🔒 Your submission is securely processed for Karma verification.</p>
+                </form>
+            </div>
+
+            <div id="submissionResult" class="submission-result" style="display:none;">
+                <div class="result-header">
+                    <div><span class="heading-kicker">SUBMISSION SUCCESSFUL</span>
+                        <h2>Your Tree Contribution</h2>
+                    </div>
+                    <span class="status-badge">Pending</span>
+                </div>
+                <div class="result-content">
+                    <div class="result-photo"><img id="resultPhoto" src="" alt="Submitted tree"></div>
+                    <div class="result-details">
+                        <div class="detail-item"><span class="detail-label">Tree Name</span><span id="resultTreeName" class="detail-value"></span></div>
+                        <div class="detail-item"><span class="detail-label">Location</span><span id="resultLocation" class="detail-value"></span></div>
+                        <div class="detail-item"><span class="detail-label">Latitude</span><span id="resultLatitude" class="detail-value"></span></div>
+                        <div class="detail-item"><span class="detail-label">Longitude</span><span id="resultLongitude" class="detail-value"></span></div>
+                        <div class="detail-item"><span class="detail-label">Description</span><span id="resultDescription" class="detail-value"></span></div>
+                        <div class="detail-item"><span class="detail-label">Submitted At</span><span id="resultCreatedAt" class="detail-value"></span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TREE HISTORY -->
+        <section class="dashboard-section" id="tree-history">
+            <div class="history-card">
+                <div class="history-head"><span>Tree</span><span>Date</span><span>Location</span><span>Status</span><span>Karma</span></div>
+                <div id="historyList"></div>
+                <div class="history-empty" id="historyEmpty">🌱 No trees planted yet.<br>Plant a tree to create your first history record.</div>
+                <div class="history-total"><span>Total Karma Points</span><strong id="totalKarma">0 pts</strong></div>
+            </div>
+        </section>
+
+        <!-- EMERGENCY -->
+        <section class="dashboard-section" id="emergency">
+            <div class="emergency-grid">
+                <div class="emergency-card"><span>🌳</span>
+                    <h3>Illegal Cutting</h3>
+                </div>
+                <div class="emergency-card"><span>🔥</span>
+                    <h3>Forest Fire</h3>
+                </div>
+                <div class="emergency-card"><span>⚠️</span>
+                    <h3>Pollution</h3>
+                </div>
+                <div class="emergency-card"><span>💧</span>
+                    <h3>Water Leakage</h3>
+                </div>
+            </div>
+
+            <div class="emergency-report-card">
+                <div class="emergency-report-header">
+                    <div class="emergency-report-icon">🚨</div>
+                    <div>
+                        <h2>Report an Environmental Incident</h2>
+                        <p>Provide evidence and details to help us respond.</p>
+                    </div>
+                </div>
+                <form id="emergencyForm">
+                    <div class="emergency-form-section">
+                        <label class="emergency-form-label" for="incidentType"><span>1.</span> Incident Type</label>
+                        <select id="incidentType" class="emergency-input" required>
+            <option value="">Select incident type</option>
+            <option>Illegal Cutting</option><option>Forest Fire</option>
+            <option>Pollution</option><option>Water Leakage</option>
+          </select>
+                    </div>
+
+                    <div class="emergency-form-section">
+                        <label class="emergency-form-label" for="incidentPhoto"><span>2.</span> Upload Photo Evidence</label>
+                        <p class="emergency-form-help">Upload a clear photo showing the incident.</p>
+                        <label for="incidentPhoto" class="emergency-upload-box">
+            <div class="emergency-upload-icon">📷</div>
+            <div class="emergency-upload-title">Select Evidence Photos</div>
+            <div class="emergency-upload-subtitle">JPG, JPEG or PNG · Max 10 MB</div>
+            <input type="file" id="incidentPhoto" accept="image/jpeg,image/png,image/jpg" hidden required>
+          </label>
+                    </div>
+
+                    <div class="emergency-form-section">
+                        <label class="emergency-form-label" for="incidentLocation"><span>3.</span> Location</label>
+                        <div class="emergency-location-row">
+                            <input type="text" id="incidentLocation" class="emergency-input" placeholder="Incident location" readonly required>
+                            <button type="button" id="getIncidentLocation" class="emergency-location-btn">📍 Get Location</button>
+                        </div>
+                        <div id="incidentLocationStatus" class="emergency-location-status" aria-live="polite"></div>
+                    </div>
+
+                    <div class="emergency-form-section">
+                        <label for="incidentDescription" class="emergency-form-label"><span>4.</span> Describe the Incident</label>
+                        <textarea id="incidentDescription" class="emergency-input emergency-textarea" maxlength="1000" rows="6" placeholder="Describe the environmental incident..." required></textarea>
+                        <div class="emergency-character-count"><span id="incidentCharCount">0</span> / 1000</div>
+                    </div>
+
+                    <button type="submit" class="emergency-submit-btn" id="emergencySubmitBtn">
+          <span id="emergencySubmitText">Submit Report</span>
+          <span class="emergency-submit-loader">Submitting...</span>
+        </button>
+                    <p class="emergency-secure-note">🔒 Your report is securely processed.</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- REWARDS -->
+        <section class="dashboard-section" id="rewards">
+            <div class="section-title"><span class="section-icon">🎁</span>
+                <div>
+                    <h2>Rewards</h2>
+                    <p>Your environmental actions unlock exciting rewards.</p>
+                </div>
+            </div>
+            <div class="rewards-preview">
+                <div class="reward-preview-card"><span class="reward-icon">🌱</span>
+                    <h3>10 Trees Planted</h3>
+                    <p>10% discount on selected eco-friendly products.</p>
+                </div>
+                <div class="reward-preview-card"><span class="reward-icon">🌳</span>
+                    <h3>20 Trees Planted</h3>
+                    <p>Unlock a 15% eco-store discount.</p>
+                </div>
+                <div class="reward-preview-card"><span class="reward-icon">🏆</span>
+                    <h3>30 Trees Planted</h3>
+                    <p>Unlock your exclusive Karma badge.</p>
+                </div>
+                <div class="reward-preview-card"><span class="reward-icon">🏆</span>
+                    <h3>40 Trees Planted</h3>
+                    <p>Unlock a silver Karma badge.</p>
+                </div>
+                <div class="reward-preview-card"><span class="reward-icon">🏆</span>
+                    <h3>50 Trees Planted</h3>
+                    <p>Unlock a gold Karma badge.</p>
+                </div>
+                <div class="reward-preview-card"><span class="reward-icon">👑</span>
+                    <h3>100 Trees Planted</h3>
+                    <p>Unlock the Eco Champion title.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPETITIONS -->
+        <section class="dashboard-section" id="competitions">
+            <div class="competition-grid">
+                <div class="competition-card">
+                    <h3>🏫 Top Colleges</h3>
+                    <div class="ranking-row"><span>#1</span><strong>SCET</strong><b>4,230</b></div>
+                    <div class="ranking-row"><span>#2</span><strong>SVNIT</strong><b>3,910</b></div>
+                    <div class="ranking-row"><span>#3</span><strong>PDEU</strong><b>3,540</b></div>
+                    <div class="ranking-row"><span>#4</span><strong>NIT Surat</strong><b>3,220</b></div>
+                </div>
+                <div class="competition-card">
+                    <h3>🏫 Top Schools</h3>
+                    <div class="ranking-row"><span>#1</span><strong>DPS Surat</strong><b>1,840</b></div>
+                    <div class="ranking-row"><span>#2</span><strong>St. Xavier's</strong><b>1,620</b></div>
+                    <div class="ranking-row"><span>#3</span><strong>Ryan Intl.</strong><b>1,490</b></div>
+                </div>
+            </div>
+
+            <div class="competition-details">
+                <div class="competition-details-header">
+                    <h2>🏆 Competition Details</h2>
+                    <p>Upcoming environmental competitions for schools and colleges.</p>
+                </div>
+                <div class="competition-details-grid">
+                    <div class="competition-detail-card">
+                        <div class="competition-detail-top"><span class="competition-detail-icon">🌱</span><span class="competition-status">Upcoming</span></div>
+                        <h3>Green Campus Challenge</h3>
+                        <div class="competition-detail-row"><span>College</span><strong>SCET</strong></div>
+                        <div class="competition-detail-row"><span>Date</span><strong>20 Oct 2026</strong></div>
+                        <div class="competition-detail-row"><span>Reward</span><strong>₹10,000 Eco Grant</strong></div>
+                    </div>
+                    <div class="competition-detail-card">
+                        <div class="competition-detail-top"><span class="competition-detail-icon">🌳</span><span class="competition-status">Upcoming</span></div>
+                        <h3>Tree Plantation Drive</h3>
+                        <div class="competition-detail-row"><span>College</span><strong>SVNIT</strong></div>
+                        <div class="competition-detail-row"><span>Date</span><strong>25 Oct 2026</strong></div>
+                        <div class="competition-detail-row"><span>Reward</span><strong>Eco Champion Badge</strong></div>
+                    </div>
+                    <div class="competition-detail-card">
+                        <div class="competition-detail-top"><span class="competition-detail-icon">♻️</span><span class="competition-status">Upcoming</span></div>
+                        <h3>Clean Campus Mission</h3>
+                        <div class="competition-detail-row"><span>College</span><strong>PDEU</strong></div>
+                        <div class="competition-detail-row"><span>Date</span><strong>30 Oct 2026</strong></div>
+                        <div class="competition-detail-row"><span>Reward</span><strong>₹7,500 Sustainability Grant</strong></div>
+                    </div>
+                    <div class="competition-detail-card">
+                        <div class="competition-detail-top"><span class="competition-detail-icon">💧</span><span class="competition-status">Upcoming</span></div>
+                        <h3>Water Conservation Challenge</h3>
+                        <div class="competition-detail-row"><span>College</span><strong>NIT Surat</strong></div>
+                        <div class="competition-detail-row"><span>Date</span><strong>5 Nov 2026</strong></div>
+                        <div class="competition-detail-row"><span>Reward</span><strong>Eco Store Vouchers</strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Tree success popup -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-card">
+            <div class="success-icon">✓</div>
+            <span class="section-kicker">SUBMISSION RECEIVED</span>
+            <h2>Tree Added!</h2>
+            <p>Your tree has been added to Tree History.</p>
+            <div class="verification-points">
+                <span>🌱</span><strong>+10 Karma Points</strong><small>Status: Pending Verification</small>
+            </div>
+            <button type="button" class="dashboard-btn" id="closeSuccess">View History</button>
+        </div>
+    </div>
+
+    <!-- Emergency success popup -->
+    <div class="emergency-success-overlay" id="emergencySuccessOverlay">
+        <div class="emergency-success-card">
+            <div class="emergency-success-icon">✓</div>
+            <span>REPORT SUBMITTED</span>
+            <h2>Report Submitted Successfully!</h2>
+            <p>Your environmental incident report has been submitted.</p>
+            <button type="button" class="emergency-success-btn" id="closeEmergencySuccess">Continue</button>
+        </div>
+    </div>
+
+    <script src="multi-upload.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

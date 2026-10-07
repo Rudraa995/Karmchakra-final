@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeeva Karma — KarmChakra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="jeeva.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top kc-navbar kc-navbar--scrolled">
+        <div class="container kc-container">
+            <a class="navbar-brand kc-brand" href="index.html">
+                <svg class="brand-symbol" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1"/>
+<circle cx="20" cy="20" r="12.5" stroke="currentColor" stroke-width="1"/>
+<path d="M20 4v6M20 30v6M4 20h6M30 20h6M8.5 8.5l4.2 4.2M27.3 27.3l4.2 4.2M31.5 8.5l-4.2 4.2M12.7 27.3l-4.2 4.2" stroke="currentColor" stroke-width="1"/>
+<circle cx="20" cy="20" r="4" fill="currentColor"/>
+</svg>
+                <span>KarmChakra</span>
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center kc-nav-links">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html#karmas">Karmas</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="karmguru.html">KarmGuru</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">Profile</a>
+                    </li>
+
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn kc-join-btn" href="login.html">Join</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="karma-dashboard-layout">
+        <aside class="karma-sidebar">
+            <div class="sidebar-inner">
+                <div class="sidebar-heading">
+                    <h1>Jeeva</h1>
+                    <p>Karma Dashboard</p>
+                </div>
+                <div class="sidebar-divider"></div>
+
+                <div class="sidebar-menu">
+                    <button class="sidebar-item active" data-section="animal">
+<span class="sidebar-icon">🐕</span>
+<span>Feed an Animal</span>
+</button>
+
+                    <button class="sidebar-item" data-section="rescue">
+<span class="sidebar-icon">🚑</span>
+<span>Rescue & Report</span>
+</button>
+
+                    <button class="sidebar-item" data-section="adopt">
+<span class="sidebar-icon">🏠</span>
+<span>Adopt / Help a Stray</span>
+</button>
+
+                    <button class="sidebar-item" data-section="history">
+<span class="sidebar-icon">📜</span>
+<span>Animal History</span>
+</button>
+                </div>
+
+                <div class="sidebar-divider"></div>
+
+                <div class="sidebar-karma-box">
+                    <div class="sidebar-karma-label">KARMA SCORE</div>
+                    <div class="sidebar-karma-value">
+                        <span id="sidebarKarma">1,240</span>
+                        <small>pts</small>
+                    </div>
+                    <div class="karma-progress">
+                        <div class="karma-progress-fill" id="karmaProgress"></div>
+                    </div>
+                    <div class="karma-level">Seva Sevak · Tier 2</div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="karma-main-content">
+            <div class="seva-content-wrapper">
+
+                <a href="index.html#karmas" class="seva-back-link">← Back to Jeeva Karma</a>
+
+                <div class="seva-eyebrow">JEEVA KARMA</div>
+
+                <h2 class="seva-main-title" id="sectionTitle">Feed an Animal</h2>
+
+                <p class="seva-main-description" id="sectionDescription">Show compassion by feeding a stray animal or bird and make a meaningful difference in their day.</p>
+
+                <div class="seva-action-card" id="animalForm">
+
+                    <div class="seva-step">
+                        <div class="seva-step-number">1.</div>
+                        <div>
+                            <h3>Upload Proof</h3>
+                            <p>Upload a clear photo or video showing that you fed a stray animal or bird.</p>
+                        </div>
+                    </div>
+
+                    <label class="seva-upload-box" for="proofMedia">
+<div class="seva-upload-icon">📸</div>
+<div class="seva-upload-title">Select Photo or Video</div>
+<div class="seva-upload-text">JPG, JPEG, PNG or MP4 · Max 20 MB · Up to 5 files</div>
+</label>
+
+                    <input type="file" id="proofMedia" accept="image/jpeg,image/png,image/jpg,video/mp4" multiple hidden>
+
+                    <div class="seva-preview" id="previewContainer"></div>
+
+                    <div class="seva-form-group">
+                        <label>📍 Location</label>
+                        <div class="seva-location-row">
+                            <input type="text" id="locationInput" class="seva-input" placeholder="Enter feeding location">
+                            <button type="button" class="seva-location-btn" id="locationBtn">Use My Location</button>
+                        </div>
+                    </div>
+
+                    <div class="seva-form-group">
+                        <label for="animalType">🐕 Animal Type</label>
+                        <input type="text" id="animalType" class="seva-input" placeholder="Example: Dog, Cat, Cow, Bird">
+                    </div>
+
+                    <div class="seva-form-group">
+                        <label for="descriptionInput">📝 Describe Your Seva</label>
+                        <textarea id="descriptionInput" class="seva-textarea" rows="4" placeholder="Tell us about the animal you fed, what you provided, and how you helped..."></textarea>
+                    </div>
+
+                    <div class="ai-verification-box">
+                        <div class="ai-verification-icon">🤖</div>
+                        <div class="ai-verification-content">
+                            <strong>AI Verification</strong>
+                            <p id="aiVerificationText">Upload proof to enable AI verification.</p>
+                        </div>
+                        <span class="ai-status" id="aiStatus">Waiting</span>
+                    </div>
+
+                    <div class="seva-karma-reward">
+                        <div>
+                            <span class="reward-icon">✺</span>
+                            <span>Estimated Karma Reward</span>
+                        </div>
+                        <strong>+10 Karma</strong>
+                    </div>
+
+                    <button class="seva-submit-btn" id="submitSeva">Submit Seva for Verification</button>
+
+                    <div class="seva-success-message" id="successMessage">
+                        <span>✓</span>
+                        <div>
+                            <strong>Seva submitted successfully!</strong>
+                            <p>Your animal-feeding activity has been submitted for AI and community verification.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="rescue-action-card" id="rescueForm" style="display:none;">
+
+                    <div class="seva-step">
+                        <div class="seva-step-number">1.</div>
+                        <div>
+                            <h3>Report an Animal in Need</h3>
+                            <p>Help an injured, trapped, or abandoned animal by reporting the situation.</p>
+                        </div>
+                    </div>
+
+                    <div class="seva-form-group">
+                        <label>📸 Upload Photo</label>
+                        <label class="seva-upload-box rescue-upload-box" for="rescuePhoto">
+<div class="seva-upload-icon">📷</div>
+<div class="seva-upload-title">Upload Rescue Evidence</div>
+<div class="seva-upload-text">JPG, JPEG or PNG · Max 10 MB</div>
+</label>
+                        <input type="file" id="rescuePhoto" accept="image/jpeg,image/png,image/jpg" hidden>
+                        <div id="rescuePreview" class="rescue-preview"></div>
+                    </div>
+
+                    <div class="seva-form-group">
+                        <label>📍 GPS / Location</label>
+                        <div class="seva-location-row">
+                            <input type="text" id="rescueLocation" class="seva-input" placeholder="Enter animal location">
+                            <button type="button" class="seva-location-btn" id="rescueLocationBtn">Use My Location</button>
+                        </div>
+                    </div>
+
+                    <div class="seva-form-group">
+                        <label for="rescueDescription">📝 Describe the Situation</label>
+                        <textarea id="rescueDescription" class="seva-textarea" rows="5" placeholder="Describe what happened. Example: injured dog near road, trapped bird, abandoned puppy..."></textarea>
+                    </div>
+
+                    <div class="seva-form-group">
+                        <label>🚨 Report Priority</label>
+                        <div class="priority-options">
+                            <label class="priority-option normal-priority">
+<input type="radio" name="priority" value="normal" checked>
+<span>🟢 Normal</span>
+<small>Regular rescue request</small>
+</label>
+                            <label class="priority-option emergency-priority">
+<input type="radio" name="priority" value="emergency">
+<span>🔴 Emergency</span>
+<small>Immediate help required</small>
+</label>
+                        </div>
+                    </div>
+
+                    <div class="report-status-box">
+                        <div class="report-status-icon">📋</div>
+                        <div class="report-status-content">
+                            <strong>Track Report Status</strong>
+                            <p id="reportStatusText">Your report will appear as <b>Submitted</b> after sending.</p>
+                        </div>
+                        <span class="report-status" id="reportStatus">Draft</span>
+                    </div>
+
+                    <div class="rescue-karma-reward">
+                        <div>
+                            <span class="reward-icon">⭐</span>
+                            <span>Karma after verification</span>
+                        </div>
+                        <strong>+10 Karma</strong>
+                    </div>
+
+                    <button class="seva-submit-btn" id="submitRescue">Submit Rescue Report</button>
+
+                    <div class="seva-success-message" id="rescueSuccess">
+                        <span>✓</span>
+                        <div>
+                            <strong>Rescue report submitted!</strong>
+                            <p>Your report has been submitted. You can track its verification status here.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="adopt-action-card" id="adoptForm" style="display:none;">
+
+                    <div class="adopt-tabs">
+                        <button type="button" class="adopt-tab active" data-adopt-tab="list">List an Animal</button>
+                        <button type="button" class="adopt-tab" data-adopt-tab="find">Find Animals</button>
+                    </div>
+
+                    <div id="listAnimalSection">
+
+                        <div class="seva-step">
+                            <div class="seva-step-number">1.</div>
+                            <div>
+                                <h3>List an Animal for Adoption</h3>
+                                <p>Help a stray find a safe and loving home.</p>
+                            </div>
+                        </div>
+
+                        <div class="seva-form-group">
+                            <label>📸 Animal Photo</label>
+                            <label class="seva-upload-box" for="adoptAnimalPhoto">
+<div class="seva-upload-icon">🐾</div>
+<div class="seva-upload-title">Upload Animal Photo</div>
+<div class="seva-upload-text">JPG, JPEG or PNG · Max 10 MB</div>
+</label>
+                            <input type="file" id="adoptAnimalPhoto" accept="image/jpeg,image/png,image/jpg" hidden>
+                            <div id="adoptPhotoPreview" class="seva-preview"></div>
+                        </div>
+
+                        <div class="adopt-form-grid">
+                            <div class="seva-form-group">
+                                <label for="adoptAnimalName">🐾 Animal Name</label>
+                                <input type="text" id="adoptAnimalName" class="seva-input" placeholder="Example: Bruno">
+                            </div>
+
+                            <div class="seva-form-group">
+                                <label for="adoptAnimalType">Animal Type</label>
+                                <select id="adoptAnimalType" class="seva-input">
+<option value="">Select animal</option>
+<option value="Dog">Dog</option>
+<option value="Cat">Cat</option>
+<option value="Cow">Cow</option>
+<option value="Bird">Bird</option>
+<option value="Other">Other</option>
+</select>
+                            </div>
+                        </div>
+
+                        <div class="adopt-form-grid">
+                            <div class="seva-form-group">
+                                <label for="adoptAnimalAge">Age</label>
+                                <input type="text" id="adoptAnimalAge" class="seva-input" placeholder="Example: 2 years">
+                            </div>
+
+                            <div class="seva-form-group">
+                                <label for="adoptAnimalGender">Gender</label>
+                                <select id="adoptAnimalGender" class="seva-input">
+<option value="">Select gender</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+</select>
+                            </div>
+                        </div>
+
+                        <div class="seva-form-group">
+                            <label>📍 Location</label>
+                            <div class="seva-location-row">
+                                <input type="text" id="adoptLocation" class="seva-input" placeholder="Enter animal location">
+                                <button type="button" class="seva-location-btn" id="adoptLocationBtn">Use My Location</button>
+                            </div>
+                        </div>
+
+                        <div class="seva-form-group">
+                            <label for="adoptAnimalDetails">📝 Animal Details</label>
+                            <textarea id="adoptAnimalDetails" class="seva-textarea" rows="4" placeholder="Describe the animal, personality, health condition and care requirements..."></textarea>
+                        </div>
+
+                        <div class="seva-form-group">
+                            <label for="adopterContact">📞 Contact Information</label>
+                            <input type="text" id="adopterContact" class="seva-input" placeholder="Phone or email for interested adopters">
+                        </div>
+
+                        <div class="seva-karma-reward">
+                            <div>
+                                <span class="reward-icon">⭐</span>
+                                <span>Karma for verified adoption/help</span>
+                            </div>
+                            <strong>+20 Karma</strong>
+                        </div>
+
+                        <button type="button" id="listAnimalBtn" class="seva-submit-btn">List Animal for Adoption</button>
+
+                        <div id="adoptionListSuccess" class="seva-success-message">
+                            <span>✓</span>
+                            <div>
+                                <strong>Animal listed successfully!</strong>
+                                <p>Your adoption listing has been submitted for verification. +20 Karma will be awarded after verification.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="findAnimalSection" style="display:none;">
+
+                        <div class="seva-step">
+                            <div class="seva-step-number">2.</div>
+                            <div>
+                                <h3>Find Animals Available for Adoption</h3>
+                                <p>Find animals listed by rescuers and people helping strays.</p>
+                            </div>
+                        </div>
+
+                        <div class="adoption-cards" id="adoptionCards">
+
+                            <div class="adoption-card">
+                                <div class="adoption-card-image">🐕</div>
+                                <div class="adoption-card-content">
+                                    <h3>Buddy</h3>
+                                    <p>Friendly dog looking for a caring family.</p>
+                                    <span>📍 Local Area</span>
+                                    <button type="button" class="contact-adopter-btn" data-animal="Buddy">Contact Rescuer</button>
+                                </div>
+                            </div>
+
+                            <div class="adoption-card">
+                                <div class="adoption-card-image">🐈</div>
+                                <div class="adoption-card-content">
+                                    <h3>Milo</h3>
+                                    <p>Gentle cat looking for a safe and loving home.</p>
+                                    <span>📍 Local Area</span>
+                                    <button type="button" class="contact-adopter-btn" data-animal="Milo">Contact Rescuer</button>
+                                </div>
+                            </div>
+
+                            <div class="adoption-card">
+                                <div class="adoption-card-image">🐕‍🦺</div>
+                                <div class="adoption-card-content">
+                                    <h3>Rocky</h3>
+                                    <p>Playful stray who needs a permanent home.</p>
+                                    <span>📍 Local Area</span>
+                                    <button type="button" class="contact-adopter-btn" data-animal="Rocky">Contact Rescuer</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="contactMessage" class="adoption-contact-message"></div>
+
+                        <div class="adoption-status-box">
+                            <div class="report-status-icon">🏠</div>
+                            <div>
+                                <strong>Track Adoption Status</strong>
+                                <p id="adoptionStatusText">No adoption request started.</p>
+                            </div>
+                            <span id="adoptionStatus" class="report-status">Not Started</span>
+                        </div>
+
+                        <div class="seva-karma-reward">
+                            <div>
+                                <span class="reward-icon">⭐</span>
+                                <span>Karma for verified adoption/help</span>
+                            </div>
+                            <strong>+20 Karma</strong>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="animal-history-section" id="historyForm" style="display:none;">
+
+                <div class="history-header">
+                    <div>
+
+
+                    </div>
+                    <div class="history-total-card">
+
+                    </div>
+                </div>
+
+                <div class="history-summary">
+                    <div class="history-summary-card">
+                        <span class="summary-icon">🐕</span>
+                        <div>
+                            <strong id="feedHistoryCount">0</strong>
+                            <span>Feed Activities</span>
+                        </div>
+                    </div>
+
+                    <div class="history-summary-card">
+                        <span class="summary-icon">🚑</span>
+                        <div>
+                            <strong id="rescueHistoryCount">0</strong>
+                            <span>Rescue Reports</span>
+                        </div>
+                    </div>
+
+                    <div class="history-summary-card">
+                        <span class="summary-icon">🏠</span>
+                        <div>
+                            <strong id="adoptionHistoryCount">0</strong>
+                            <span>Adoption Activities</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animal-history-table-wrapper">
+                    <table class="animal-history-table">
+                        <thead>
+                            <tr>
+                                <th>ACTIVITY</th>
+                                <th>DATE</th>
+                                <th>DETAILS</th>
+                                <th>STATUS</th>
+                                <th>KARMA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="animalHistoryList">
+                        </tbody>
+                    </table>
+
+                    <div class="history-empty" id="historyEmpty">
+                        <div>🐾</div>
+                        <h3>No Animal History Yet</h3>
+                        <p>Complete a Jeeva Karma activity and your record will appear here.</p>
+                    </div>
+
+                    <div class="history-total-row">
+                        <span>Total Karma Points</span>
+                        <strong id="historyBottomTotal">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="jeeva.js"></script>
+    <script src="multi-upload.js"></script>
+</body>
+
+</html>
