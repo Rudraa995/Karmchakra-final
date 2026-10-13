@@ -1,13 +1,7 @@
-// ====== API SETTINGS ======
-
 const API_BASE = "http://127.0.0.1:8000";
-
 const LOGIN_URL = `${API_BASE}/api/auth/login`;
 const SIGNUP_URL = `${API_BASE}/api/auth/register`;
-
 const AFTER_LOGIN_PAGE = "profile.html";
-
-// ==========================
 
 const $ = (id) => document.getElementById(id);
 
@@ -15,264 +9,184 @@ const loginForm = $("loginForm");
 const signupForm = $("signupForm");
 const alertBox = $("formAlert");
 
-// ---------- Tabs: Login and Sign up ----------
+function showAlert(message, type = "err") {
+    if (!alertBox) return;
+    alertBox.textContent = message;
+    alertBox.hidden = !message;
+    alertBox.className = `alert ${type}`;
+}
 
 function showForm(which) {
     const isLogin = which === "login";
+    if (!loginForm || !signupForm) return;
 
-    if (loginForm) loginForm.hidden = !isLogin;
-    if (signupForm) signupForm.hidden = isLogin;
+    loginForm.hidden = !isLogin;
+    signupForm.hidden = isLogin;
 
-    $("tabLogin") ? .classList.toggle("active", isLogin);
-    $("tabSignup") ? .classList.toggle("active", !isLogin);
+    $("tabLogin")?.classList.toggle("active", isLogin);
+    $("tabSignup")?.classList.toggle("active", !isLogin);
 
-    $("tabLogin") ? .setAttribute("aria-selected", String(isLogin));
-    $("tabSignup") ? .setAttribute("aria-selected", String(!isLogin));
+    $("tabLogin")?.setAttribute("aria-selected", String(isLogin));
+    $("tabSignup")?.setAttribute("aria-selected", String(!isLogin));
 
-    document.title = (isLogin ? "Login" : "Sign up") + " | KarmaChakra";
-
+    document.title = `${isLogin ? "Login" : "Sign up"} | KarmaChakra`;
     showAlert("");
 }
 
-$("tabLogin") ? .addEventListener("click", () => showForm("login"));
-$("tabSignup") ? .addEventListener("click", () => showForm("signup"));
+$("tabLogin")?.addEventListener("click", () => showForm("login"));
+$("tabSignup")?.addEventListener("click", () => showForm("signup"));
 
-$("goSignup") ? .addEventListener("click", (e) => {
-    e.preventDefault();
+$("goSignup")?.addEventListener("click", (event) => {
+    event.preventDefault();
     showForm("signup");
 });
 
-$("goLogin") ? .addEventListener("click", (e) => {
-    e.preventDefault();
+$("goLogin")?.addEventListener("click", (event) => {
+    event.preventDefault();
     showForm("login");
 });
 
 if (location.hash === "#signup") {
     showForm("signup");
+} else {
+    showForm("login");
 }
 
-// ---------- Helpers ----------
-
-function showAlert(msg, type = "err") {
-    if (!alertBox) return;
-
-    alertBox.hidden = !msg;
-    alertBox.textContent = msg;
-    alertBox.className = "alert " + type;
-}
-
-function setState(input, msg) {
+function setState(input, message = "") {
     if (!input) return false;
 
     const field = input.closest(".field");
+    const error = field?.querySelector(".error");
 
-    if (!field) return !msg;
+    field?.classList.toggle("invalid", Boolean(message));
+    field?.classList.toggle("valid", !message && input.value !== "");
 
-    const err = field.querySelector(".error");
-
-    field.classList.toggle("invalid", Boolean(msg));
-    field.classList.toggle("valid", !msg && input.value !== "");
-
-    if (err) {
-        err.textContent = msg || "";
-    }
-
-    return !msg;
+    if (error) error.textContent = message;
+    return !message;
 }
 
 function getErrorMessage(data, fallback) {
-    if (Array.isArray(data ? .detail)) {
-        return data.detail.map(error => {
-            const field = error.loc ? .join(" → ") || "Field";
-            return `${field}: ${error.msg}`;
-        }).join("\n");
+    if (Array.isArray(data?.detail)) {
+        return data.detail
+            .map((error) => `${error.loc?.join(" → ") || "Field"}: ${error.msg}`)
+            .join("\n");
     }
 
-    if (typeof data ? .detail === "string") {
-        return data.detail;
-    }
-
-    if (typeof data ? .message === "string") {
-        return data.message;
-    }
+    if (typeof data?.detail === "string") return data.detail;
+    if (typeof data?.message === "string") return data.message;
 
     return fallback;
 }
 
-// ---------- Show / Hide Password ----------
-
-document.querySelectorAll(".eye").forEach((btn) => {
-    btn.addEventListener("click", () => {
-        const input = $(btn.dataset.target);
+document.querySelectorAll(".eye").forEach((button) => {
+    button.addEventListener("click", () => {
+        const input = $(button.dataset.target);
         if (!input) return;
 
         const show = input.type === "password";
-
         input.type = show ? "text" : "password";
-        btn.textContent = show ? "Hide" : "Show";
-
-        btn.setAttribute(
-            "aria-label",
-            show ? "Hide password" : "Show password"
-        );
+        button.textContent = show ? "Hide" : "Show";
+        button.setAttribute("aria-label", show ? "Hide password" : "Show password");
     });
 });
-
-// ---------- Validation Rules ----------
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const NAME_RE = /^[A-Za-z][A-Za-z .'-]{1,49}$/;
 const PHONE_RE = /^[6-9]\d{9}$/;
 
 const passwordChecks = {
-    len: (p) => p.length >= 8,
-    upper: (p) => /[A-Z]/.test(p),
-    lower: (p) => /[a-z]/.test(p),
-    num: (p) => /\d/.test(p),
-    sym: (p) => /[^A-Za-z0-9]/.test(p)
+    len: (password) => password.length >= 8,
+    upper: (password) => /[A-Z]/.test(password),
+    lower: (password) => /[a-z]/.test(password),
+    num: (password) => /\d/.test(password),
+    sym: (password) => /[^A-Za-z0-9]/.test(password)
 };
 
-const isStrongPassword = (p) =>
-    Object.values(passwordChecks).every(fn => fn(p));
+const isStrongPassword = (password) =>
+    Object.values(passwordChecks).every((check) => check(password));
 
 const validate = {
-    email(el) {
-        const value = el.value.trim();
-
-        if (!value) {
-            return setState(el, "Enter your email address");
-        }
-
+    email(input) {
+        const value = input.value.trim();
+        if (!value) return setState(input, "Enter your email address");
         if (!EMAIL_RE.test(value)) {
-            return setState(
-                el,
-                "Enter a valid email, like name@example.com"
-            );
+            return setState(input, "Enter a valid email address");
         }
-
-        return setState(el, "");
+        return setState(input);
     },
 
-    loginPassword(el) {
-        return setState(
-            el,
-            el.value ? "" : "Enter your password"
-        );
+    loginPassword(input) {
+        return setState(input, input.value ? "" : "Enter your password");
     },
 
-    name(el) {
-        const value = el.value.trim();
-
-        if (!value) {
-            return setState(el, "Enter your full name");
-        }
-
+    name(input) {
+        const value = input.value.trim();
+        if (!value) return setState(input, "Enter your full name");
         if (!NAME_RE.test(value)) {
-            return setState(
-                el,
-                "Use letters only (2 to 50 characters)"
-            );
+            return setState(input, "Use 2–50 valid characters for your name");
         }
-
-        return setState(el, "");
+        return setState(input);
     },
 
-    username(el) {
-        const value = el.value.trim();
-
-        if (!value) {
-            return setState(el, "Enter your username");
-        }
-
+    username(input) {
+        const value = input.value.trim();
+        if (!value) return setState(input, "Enter your username");
         if (!/^[A-Za-z0-9_]{3,20}$/.test(value)) {
-            return setState(
-                el,
-                "Use 3–20 letters, numbers, or underscores"
-            );
+            return setState(input, "Use 3–20 letters, numbers, or underscores");
         }
-
-        return setState(el, "");
+        return setState(input);
     },
 
-    phone(el) {
-        const value = el.value.trim();
-
-        if (!value) {
-            return setState(el, "Enter your mobile number");
-        }
-
+    phone(input) {
+        const value = input.value.trim();
+        if (!value) return setState(input, "Enter your mobile number");
         if (!PHONE_RE.test(value)) {
-            return setState(
-                el,
-                "Enter a valid 10-digit number starting with 6 to 9"
-            );
+            return setState(input, "Enter a valid 10-digit mobile number");
         }
-
-        return setState(el, "");
+        return setState(input);
     },
 
-    signupPassword(el) {
-        const value = el.value;
-
-        if (!value) {
-            return setState(el, "Create a password");
+    signupPassword(input) {
+        if (!input.value) return setState(input, "Create a password");
+        if (!isStrongPassword(input.value)) {
+            return setState(input, "Your password must meet all the rules below");
         }
-
-        if (!isStrongPassword(value)) {
-            return setState(
-                el,
-                "Password does not meet all the rules below"
-            );
-        }
-
-        return setState(el, "");
+        return setState(input);
     },
 
-    confirm(el) {
-        if (!el.value) {
-            return setState(el, "Re-enter your password");
+    confirm(input) {
+        if (!input.value) return setState(input, "Re-enter your password");
+        if (input.value !== $("signupPassword").value) {
+            return setState(input, "Passwords do not match");
         }
-
-        if (el.value !== $("signupPassword").value) {
-            return setState(el, "Passwords do not match");
-        }
-
-        return setState(el, "");
+        return setState(input);
     },
 
-    terms(el) {
-        const field = el.closest(".field");
-        const error = field ? .querySelector(".error");
+    terms(input) {
+        const field = input.closest(".field");
+        const error = field?.querySelector(".error");
+        const valid = input.checked;
 
         if (error) {
-            error.textContent = el.checked ?
-                "" :
-                "Accept the terms to continue";
+            error.textContent = valid ? "" : "Accept the terms to continue";
         }
 
-        field ? .classList.toggle("invalid", !el.checked);
-
-        return el.checked;
+        field?.classList.toggle("invalid", !valid);
+        return valid;
     }
 };
 
-// ---------- Live Password Strength Meter ----------
+const passwordInput = $("signupPassword");
 
-const pwd = $("signupPassword");
-
-pwd ? .addEventListener("input", () => {
-    const password = pwd.value;
+passwordInput?.addEventListener("input", () => {
+    const password = passwordInput.value;
     let score = 0;
 
-    document.querySelectorAll("#rules li").forEach(li => {
-        const rule = li.dataset.rule;
-        const ok = passwordChecks[rule] ?
-            passwordChecks[rule](password) :
-            false;
-
-        li.classList.toggle("met", ok);
-
-        if (ok) score++;
+    document.querySelectorAll("#rules li").forEach((item) => {
+        const rule = item.dataset.rule;
+        const passed = passwordChecks[rule]?.(password) ?? false;
+        item.classList.toggle("met", passed);
+        if (passed) score++;
     });
 
     const levels = [
@@ -284,34 +198,20 @@ pwd ? .addEventListener("input", () => {
         ["Strong", "100%", "#6fcf8f"]
     ];
 
-    const [label, width, color] = password
-        ?
-        levels[score] :
-        levels[0];
+    const [label, width, color] = password ? levels[score] : levels[0];
 
-    if ($("strengthText")) {
-        $("strengthText").textContent = label;
-    }
-
+    if ($("strengthText")) $("strengthText").textContent = label;
     if ($("meterBar")) {
         $("meterBar").style.width = width;
         $("meterBar").style.background = color;
     }
 
-    if ($("confirm") ? .value) {
-        validate.confirm($("confirm"));
-    }
+    if ($("confirm")?.value) validate.confirm($("confirm"));
 });
 
-// ---------- Only Digits in Phone ----------
-
-$("phone") ? .addEventListener("input", (event) => {
-    event.target.value = event.target.value
-        .replace(/\D/g, "")
-        .slice(0, 10);
+$("phone")?.addEventListener("input", (event) => {
+    event.target.value = event.target.value.replace(/\D/g, "").slice(0, 10);
 });
-
-// ---------- Validate on Blur ----------
 
 [
     ["loginEmail", "email"],
@@ -323,16 +223,10 @@ $("phone") ? .addEventListener("input", (event) => {
     ["signupPassword", "signupPassword"],
     ["confirm", "confirm"]
 ].forEach(([id, rule]) => {
-    $(id) ? .addEventListener("blur", () => {
-        validate[rule]($(id));
-    });
+    $(id)?.addEventListener("blur", () => validate[rule]($(id)));
 });
 
-$("terms") ? .addEventListener("change", () => {
-    validate.terms($("terms"));
-});
-
-// ---------- Send Data to Backend ----------
+$("terms")?.addEventListener("change", () => validate.terms($("terms")));
 
 async function postJSON(url, body) {
     const response = await fetch(url, {
@@ -344,36 +238,34 @@ async function postJSON(url, body) {
         body: JSON.stringify(body)
     });
 
-    const result = await response.json().catch(() => ({}));
+    const data = await response.json().catch(() => ({}));
 
     return {
         ok: response.ok,
         status: response.status,
-        data: result
+        data
     };
 }
 
-function setLoading(btn, loading, text) {
-    if (!btn) return;
-
-    btn.disabled = loading;
-    btn.textContent = loading ? "Please wait..." : text;
+function setLoading(button, loading, text) {
+    if (!button) return;
+    button.disabled = loading;
+    button.textContent = loading ? "Please wait..." : text;
 }
 
-// ---------- LOGIN SUBMIT ----------
-
-loginForm ? .addEventListener("submit", async(event) => {
+loginForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const results = [
+    const valid = [
         validate.email($("loginEmail")),
         validate.loginPassword($("loginPassword"))
-    ];
+    ].every(Boolean);
 
-    if (results.includes(false)) return;
+    if (!valid) return;
 
-    const btn = loginForm.querySelector(".btn");
-    setLoading(btn, true, "Login");
+    const button = loginForm.querySelector(".btn");
+    setLoading(button, true, "Login");
+    showAlert("");
 
     try {
         const { ok, data, status } = await postJSON(LOGIN_URL, {
@@ -382,87 +274,53 @@ loginForm ? .addEventListener("submit", async(event) => {
         });
 
         if (!ok) {
-            showAlert(
-                getErrorMessage(
-                    data,
-                    status === 401 ?
-                    "Incorrect email or password." :
-                    "Unable to login. Please try again."
-                )
-            );
-
-            console.error("Login error:", data);
+            showAlert(getErrorMessage(
+                data,
+                status === 401 ?
+                "Incorrect email or password." :
+                "Unable to login. Please try again."
+            ));
             return;
         }
 
-        // Support common FastAPI token response formats.
-        const accessToken =
-            data.access_token ||
-            data.token ||
-            data.accessToken;
+        const token = data.access_token || data.token || data.accessToken;
 
-        if (!accessToken) {
-            showAlert(
-                "Login response did not contain an access token."
-            );
-
+        if (!token) {
+            showAlert("The server response did not contain an access token.");
             console.error("Login response:", data);
             return;
         }
 
-        // Use the same storage for token and user details.
-        const store = $("remember") ? .checked ?
-            localStorage :
-            sessionStorage;
+        const remember = $("remember")?.checked;
+        const storage = remember ? localStorage : sessionStorage;
+        const otherStorage = remember ? sessionStorage : localStorage;
 
-        // Remove stale values from the other storage.
-        const otherStore = store === localStorage ?
-            sessionStorage :
-            localStorage;
+        otherStorage.removeItem("token");
+        otherStorage.removeItem("user");
 
-        otherStore.removeItem("token");
-        otherStore.removeItem("user");
+        storage.setItem("token", token);
 
-        store.setItem("token", accessToken);
+        const user = data.user || data.profile || data;
 
-        const userDetails =
-            data.user ||
-            data.profile ||
-            data;
-
-        store.setItem(
-            "user",
-            JSON.stringify({
-                ...userDetails,
-                name: userDetails.full_name ||
-                    userDetails.name ||
-                    $("loginEmail").value.trim(),
-                email: userDetails.email ||
-                    $("loginEmail").value.trim()
-            })
-        );
-
-        showAlert("Login successful. Redirecting...", "ok");
+        storage.setItem("user", JSON.stringify({
+            ...user,
+            name: user.full_name || user.name || $("loginEmail").value.trim(),
+            email: user.email || $("loginEmail").value.trim()
+        }));
 
         window.location.href = AFTER_LOGIN_PAGE;
-
     } catch (error) {
-        console.error("Login request error:", error);
-
-        showAlert(
-            "Cannot reach the server. Check your connection and try again."
-        );
+        console.error("Login error:", error);
+        showAlert("Cannot reach the server. Check that your backend is running.");
     } finally {
-        setLoading(btn, false, "Login");
+        setLoading(button, false, "Login");
     }
 });
 
-// ---------- SIGNUP SUBMIT ----------
-
-signupForm ? .addEventListener("submit", async(event) => {
+signupForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const results = [
+    const valid = [
         validate.name($("name")),
         validate.username($("username")),
         validate.email($("signupEmail")),
@@ -470,15 +328,16 @@ signupForm ? .addEventListener("submit", async(event) => {
         validate.signupPassword($("signupPassword")),
         validate.confirm($("confirm")),
         validate.terms($("terms"))
-    ];
+    ].every(Boolean);
 
-    if (results.includes(false)) return;
+    if (!valid) return;
 
-    const btn = signupForm.querySelector(".btn");
-    setLoading(btn, true, "Create account");
+    const button = signupForm.querySelector(".btn");
+    setLoading(button, true, "Create account");
+    showAlert("");
 
     try {
-        const { ok, data, status } = await postJSON(SIGNUP_URL, {
+        const { ok, data } = await postJSON(SIGNUP_URL, {
             full_name: $("name").value.trim(),
             username: $("username").value.trim(),
             email: $("signupEmail").value.trim(),
@@ -487,48 +346,40 @@ signupForm ? .addEventListener("submit", async(event) => {
         });
 
         if (!ok) {
-            const message = getErrorMessage(
-                data,
-                "Unable to create your account. Please try again."
-            );
-
-            showAlert(message);
-            console.error("Registration error:", status, data);
+            showAlert(getErrorMessage(data, "Unable to create your account. Please try again."));
+            console.error("Registration error:", data);
             return;
         }
 
         signupForm.reset();
 
-        document.querySelectorAll("#rules li").forEach(li => {
-            li.classList.remove("met");
+        signupForm.querySelectorAll(".field").forEach((field) => {
+            field.classList.remove("valid", "invalid");
+            const error = field.querySelector(".error");
+            if (error) error.textContent = "";
         });
 
-        if ($("strengthText")) {
-            $("strengthText").textContent = "Password strength";
-        }
+        document.querySelectorAll("#rules li").forEach((item) => {
+            item.classList.remove("met");
+        });
 
+        if ($("strengthText")) $("strengthText").textContent = "Password strength";
         if ($("meterBar")) {
             $("meterBar").style.width = "0%";
             $("meterBar").style.background = "transparent";
         }
 
         showForm("login");
-        showAlert("Account created. Please login.", "ok");
-
+        showAlert("Account created successfully. Please log in.", "ok");
     } catch (error) {
-        console.error("Signup request error:", error);
-
-        showAlert(
-            "Cannot reach the server. Check your connection and try again."
-        );
+        console.error("Signup error:", error);
+        showAlert("Cannot reach the server. Check that your backend is running.");
     } finally {
-        setLoading(btn, false, "Create account");
+        setLoading(button, false, "Create account");
     }
 });
 
-// ---------- Forgot Password ----------
-
-$("forgot") ? .addEventListener("click", (event) => {
+$("forgot")?.addEventListener("click", (event) => {
     event.preventDefault();
     showAlert("Password reset is coming soon.", "ok");
 });
