@@ -12,6 +12,7 @@
     --sans: 'Inter', system-ui, sans-serif;
 }
 
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -396,5 +397,292 @@ a:hover {
 @media (prefers-reduced-motion: reduce) {
     .chakra span {
         animation: none !important;
+    }
+}
+
+
+/* ===== Shared KarmaChakra navbar on login page ===== */
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #a87518 #1a0d06;
+}
+
+body {
+    padding-top: 82px;
+    overflow-x: hidden;
+}
+
+.kc-navbar {
+    min-height: 82px;
+    background: #100802;
+    border-bottom: 1px solid rgba(255, 169, 31, 0.18);
+    z-index: 1030;
+}
+
+.kc-navbar .kc-container {
+    width: 100%;
+}
+
+.kc-navbar .kc-brand {
+    color: #f3d18a;
+    font-family: var(--serif);
+    font-size: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kc-navbar .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kc-navbar .brand-symbol {
+    width: 38px;
+    height: 38px;
+    color: #dba42d;
+}
+
+.kc-navbar .kc-nav-links {
+    gap: 12px;
+}
+
+.kc-navbar .nav-link {
+    color: #b9a58a;
+    padding: 12px 20px;
+    border-radius: 999px;
+    transition: color .2s, background .2s;
+}
+
+.kc-navbar .nav-link:hover,
+.kc-navbar .nav-link:focus {
+    color: #ffc94d;
+    background: rgba(255, 169, 31, .08);
+}
+
+.kc-navbar .kc-join-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 102px;
+    padding: 12px 25px;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ffa91f, #ffc329);
+    color: #291500;
+    font: 600 1rem var(--sans);
+}
+
+.kc-navbar .kc-join-btn:hover {
+    color: #291500;
+    filter: brightness(1.06);
+}
+
+.navbar-toggler-icon {
+    filter: none;
+}
+
+.auth {
+    min-height: calc(100vh - 82px);
+}
+
+@media (max-width: 991.98px) {
+    .kc-navbar .navbar-collapse {
+        margin-top: 12px;
+        padding: 12px 0 18px;
+        background: #100802;
+    }
+
+    .kc-navbar .kc-nav-links {
+        align-items: stretch !important;
+        gap: 6px;
+    }
+
+    .kc-navbar .nav-link {
+        display: block;
+    }
+
+    .kc-navbar .kc-join-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .kc-navbar .kc-brand {
+        font-size: 1.65rem;
+    }
+
+    .kc-navbar .brand-symbol {
+        width: 32px;
+        height: 32px;
+    }
+
+    body {
+        padding-top: 76px;
+    }
+
+    .kc-navbar {
+        min-height: 76px;
+    }
+
+    .auth {
+        min-height: calc(100vh - 76px);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a0d06;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a87518;
+    border: 2px solid #1a0d06;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffc94d;
+}
+
+
+/* ===== LOGIN PAGE FIXES ===== */
+
+/* Keep the dark KarmaChakra background */
+html,
+body {
+    min-height: 100%;
+    background: var(--bg);
+}
+
+body {
+    padding-top: 82px;
+    overflow-x: hidden;
+}
+
+/* Correct the auth layout below the navbar */
+.auth {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    min-height: calc(100vh - 82px);
+}
+
+/* Override Bootstrap's default white .card */
+.panel .card {
+    width: min(440px, 100%);
+    max-width: 100%;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Keep the form panel dark */
+.panel {
+    min-width: 0;
+    background: var(--bg-2);
+    padding: 32px 24px;
+}
+
+/* Restore your intended input styling */
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field input[type="password"] {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    padding: 13px 15px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.28);
+    color: var(--cream);
+    font: 400 .95rem var(--sans);
+}
+
+.field input::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
+
+/* Keep labels and headings readable */
+.panel h2,
+.panel .field label,
+.panel .check {
+    color: var(--cream);
+}
+
+.panel .sub,
+.panel .switch {
+    color: var(--muted);
+}
+
+/* Fix Bootstrap's .row collision */
+form .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 22px;
+}
+
+/* Prevent the signup form from being cut off */
+.panel {
+    align-items: center;
+}
+
+.panel .card {
+    margin: auto;
+}
+
+@media (max-width: 880px) {
+    .auth {
+        grid-template-columns: 1fr;
+        min-height: calc(100vh - 82px);
+    }
+
+    .brand {
+        display: none;
+    }
+
+    .panel {
+        min-height: calc(100vh - 82px);
+        align-items: flex-start;
+        padding: 32px 20px;
+    }
+
+    .panel .card {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 76px;
+    }
+
+    .auth {
+        min-height: calc(100vh - 76px);
+    }
+
+    .panel {
+        min-height: calc(100vh - 76px);
+        padding: 24px 16px;
+    }
+
+    .panel .card {
+        width: 100%;
+    }
+
+    .tabs {
+        margin-bottom: 24px;
     }
 }
